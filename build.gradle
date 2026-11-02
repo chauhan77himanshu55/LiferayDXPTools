@@ -1,0 +1,6 @@
+// Liferay DXP Tools Workspace.
+//
+// Native OSGi modules under modules/ are discovered and built by the Liferay
+// Workspace plugin.
+
+description = "Liferay DXP Tools Workspace"

@@ -1,0 +1,6 @@
+Bundle-Name: Server Logs Web
+Bundle-SymbolicName: com.liferay.server.logs.web
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration
+Web-ContextPath: /server-logs-web
+-dsannotations-options: inherit

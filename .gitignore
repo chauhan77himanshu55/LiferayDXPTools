@@ -1,0 +1,17 @@
+.gradle/
+build/
+gradle-user-home.init.gradle/
+bundles/
+
+# Regenerated as an empty stub by the workspace plugin's node tooling.
+package.json
+
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+.DS_Store
+*.log
