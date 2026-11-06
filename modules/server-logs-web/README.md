@@ -51,15 +51,39 @@ that normally breaks on a Liferay upgrade:
 1. The module still resolves (`Bundle-SymbolicName com.liferay.server.logs.web`
    in Gogo `lb`). If a kernel package range moved, rebuild with the new
    `liferay.workspace.product`.
-2. The Control Panel still shows exactly one **Server Logs** entry — see the
-   next section.
+2. The Control Panel still shows exactly one **Server Logs** entry — see
+   [Hiding Liferay's own Control Panel entry](#hiding-liferays-own-control-panel-entry).
+
+## Enabling Liferay's Server Logs feature
+
+In certain DXP builds, Liferay's built-in Server Logs portlet is gated by the
+`LPS-170670` feature flag. Enable it using either method:
+
+1. In **Control Panel &rarr; Configuration &rarr; Instance Settings**, open
+   **Feature Flags &rarr; Developer** and enable `LPS-170670`.
+2. Alternatively, add the following to `portal-ext.properties` and restart:
+
+   ```properties
+   feature.flag.LPS-170670=true
+   ```
+
+If the **Developer** tab is hidden, add the following to
+`portal-ext.properties` and restart before enabling the flag in the UI:
+
+```properties
+feature.flag.ui.visible[dev]=true
+```
+
+Once enabled, Liferay's Server Logs portlet appears under **Control Panel &rarr;
+Security**. This module registers its own Server Logs entry independently of
+that feature flag; see below to avoid duplicate entries.
 
 ## Hiding Liferay's own Control Panel entry
 
 Both this module and `com.liferay.portal.company.log.web` register a panel app
-in `control_panel.security` at order 700, so by default you would see two
-**Server Logs** entries. Rather than uninstalling or fragmenting Liferay's
-module, a single OSGi component is disabled — its portlet and its
+in `control_panel.security` at order 700, so when Liferay's entry is enabled you
+would see two **Server Logs** entries. Rather than uninstalling or fragmenting
+Liferay's module, a single OSGi component is disabled — its portlet and its
 `/o/company-log` servlet stay installed and fully functional.
 
 File: `${liferay.home}/osgi/configs/com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration.config`
